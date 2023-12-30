@@ -5,7 +5,7 @@
 //
 
 import Foundation
-@_exported import OSLog
+import OSLog
 
 @attached(member, names: named(logger))
 public macro Logging() = #externalMacro(module: "LoggingMacros", type: "LoggingMacro")

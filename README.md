@@ -57,12 +57,12 @@ struct SomeObject {
 struct SomeObject {
     let someProperty: String
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
-                                category: String(describing: Self.self))
-
     func someMethod() {
         logger.log("Hello, world!")
     }
+
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
+                                category: String(describing: Self.self))
 }
 ```
 
