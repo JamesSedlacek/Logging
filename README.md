@@ -34,7 +34,10 @@ https://github.com/JamesSedlacek/Logging.git
 
 <br>
 
-## Example Usage - add `@Logging` to any struct, class, or actor
+## Example Usage
+1. Add `import Logging` to the top of any Swift file
+2. Add `@Logging` to any struct, class, or actor
+3. Use `logger` to log anything
 
 ```swift
 import Logging
