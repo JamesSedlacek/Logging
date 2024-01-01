@@ -9,3 +9,9 @@ import Foundation
 
 @attached(member, names: named(logger))
 public macro Logging() = #externalMacro(module: "LoggingMacros", type: "LoggingMacro")
+
+@attached(member, names: named(logger))
+public macro LazyLogging() = #externalMacro(module: "LoggingMacros", type: "LoggingMacro")
+
+@attached(member, names: named(logger))
+public macro ObservableLogging() = #externalMacro(module: "LoggingMacros", type: "LoggingMacro")

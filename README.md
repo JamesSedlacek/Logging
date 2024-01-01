@@ -34,7 +34,7 @@ https://github.com/JamesSedlacek/Logging.git
 
 <br>
 
-## Example Usage
+## Logging Macro Example Usage
 1. Add `import Logging` to the top of any Swift file
 2. Add `@Logging` to any struct, class, or actor
 3. Use `logger` to log anything
@@ -50,10 +50,8 @@ struct SomeObject {
         logger.log("Hello, world!")
     }
 }
-```
 
-## Expanded Macro
-```swift
+// Expanded Macro
 struct SomeObject {
     let someProperty: String
 
@@ -63,6 +61,77 @@ struct SomeObject {
 
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
                                 category: String(describing: Self.self))
+}
+```
+
+<br>
+
+## LazyLogging Macro Example Usage
+1. Add `import Logging` to the top of any Swift file
+2. Add `@LazyLogging` to any struct, class, or actor
+3. Use `logger` to log anything
+
+```swift
+import Logging
+
+@LazyLogging
+struct SomeObject {
+    let someProperty: String
+
+    func someMethod() {
+        logger.log("Hello, world!")
+    }
+}
+
+// Expanded Macro
+struct SomeObject {
+    let someProperty: String
+
+    func someMethod() {
+        logger.log("Hello, world!")
+    }
+
+    lazy private var logger: Logger = {
+        return Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
+                      category: String(describing: Self.self))
+    }()
+}
+```
+
+<br>
+
+## ObservableLogging Macro Example Usage
+1. Add `import Logging` to the top of any Swift file
+2. Add `@ObservableLogging` to any struct, class, or actor
+3. Use `logger` to log anything
+
+```swift
+import Logging
+
+@Observable
+@ObservableLogging
+final class SomeObject {
+    let someProperty: String
+
+    func someMethod() {
+        logger.log("Hello, world!")
+    }
+}
+
+// Expanded Macro
+@Observable
+final class SomeObject {
+    let someProperty: String
+
+    func someMethod() {
+        logger.log("Hello, world!")
+    }
+
+    @ObservationIgnored
+    lazy private var logger: Logger = {
+        return Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
+                      category: String(describing: Self.self))
+    }()
 }
 ```
 

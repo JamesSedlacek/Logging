@@ -1,5 +1,5 @@
 //
-//  LoggingMacro.swift
+//  ObservableLoggingMacro.swift
 //
 //  Created by James Sedlacek on 12/29/23.
 //
@@ -8,7 +8,7 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-public struct LoggingMacro: MemberMacro {
+public struct ObservableLoggingMacro: MemberMacro {
 
     public enum MacroError: Error {
         case incorrectType
@@ -25,8 +25,11 @@ public struct LoggingMacro: MemberMacro {
             return [
                 DeclSyntax(
 """
-private let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
-                                    category: String(describing: Self.self))
+@ObservationIgnored
+lazy private var logger: Logger = {
+    return Logger(subsystem: Bundle.main.bundleIdentifier ?? "Default Subsystem",
+                  category: String(describing: Self.self))
+}()
 """)
             ]
         }
